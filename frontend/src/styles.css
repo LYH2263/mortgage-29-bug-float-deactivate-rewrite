@@ -1,0 +1,12 @@
+:root { --bg:#f4f0e6; --panel:#fff; --ink:#2c2416; --accent:#8b4513; --grid:#d8cfc0; }
+body { margin:0; font-family: "Courier New", monospace; background: var(--bg); color: var(--ink); }
+.ledger-app { display:grid; grid-template-columns: 180px 1fr; min-height:100vh; }
+.ledger-rail { background:#ebe3d4; padding:1rem; border-right:2px solid var(--accent); display:flex; flex-direction:column; gap:0.45rem; }
+.ledger-main { padding:1rem 1.25rem; background: repeating-linear-gradient(0deg, transparent, transparent 27px, var(--grid) 28px); }
+.page { max-width:960px; background: rgba(255,255,255,0.85); padding:1rem; border:1px solid var(--grid); }
+table { width:100%; border-collapse:collapse; background:var(--panel); }
+th,td { border:1px solid var(--grid); padding:0.35rem 0.5rem; }
+button { background:var(--accent); color:#fff; border:0; padding:0.35rem 0.75rem; cursor:pointer; }
+input { border:1px solid var(--grid); padding:0.3rem; }
+a { color: var(--accent); }
+.hero-num { font-size:1.8rem; font-weight:700; }
