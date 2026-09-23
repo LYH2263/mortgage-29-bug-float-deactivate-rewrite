@@ -31,7 +31,7 @@ class MortgageService:
             "id": row["id"], "kind": row["kind"], "loan_id": row["loan_id"],
             "created_at": row["created_at"],
             "input": json.loads(row["input_json"] or "{}"),
-            "result": self._live_history_result(row),
+            "result": json.loads(row["result_json"] or "{}"),
         }
 
     # ---- 利率浮动事件 -------------------------------------------------
@@ -75,9 +75,8 @@ class MortgageService:
         event = rate_float.get(self._c, event_id)
         if not event:
             raise LookupError(f"浮动事件 #{event_id} 不存在")
+        # 仅翻转启用标志：停用只影响之后的新测算，不得改写已落库的历史结果
         rate_float.set_enabled(self._c, event_id, False)
-        from app.services.rate_float_replay import rewrite_loan_runs
-        rewrite_loan_runs(self._c, event["loan_id"])
         return rate_float.get(self._c, event_id)
 
     @staticmethod
